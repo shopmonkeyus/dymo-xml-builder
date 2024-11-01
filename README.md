@@ -4,7 +4,7 @@
 
 Quickly build, preview, and test DYMO XML label templates.
 
-![screenshot](.git/screenshot.png)
+![screenshot](docs/screenshot.png)
 
 # License
 
