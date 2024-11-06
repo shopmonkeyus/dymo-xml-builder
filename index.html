@@ -185,7 +185,9 @@
 				if (valid) {
 					document.getElementById("errorXml").classList.add("hidden");
 
-					const png = label.render();
+					const png = label.render(
+						"<LabelRenderParams><ShadowDepth>3</ShadowDepth><PngUseDisplayResolution>False</PngUseDisplayResolution></LabelRenderParams>"
+					);
 
 					let img = document.getElementById("previewImage");
 
@@ -205,11 +207,17 @@
 
 			const onPrint = () => {
 				const label = dymo.label.framework.openLabelXml(
-					document.getElementById("template").value
+					editor.getValue()
 				);
 				const valid = label.isValidLabel();
 
-				label.print(document.getElementById("printers").value);
+				if (valid) {
+					label.print(document.getElementById("printers").value);
+				} else {
+					document
+						.getElementById("errorXml")
+						.classList.remove("hidden");
+				}
 			};
 
 			window.addEventListener("load", onPageLoad);
